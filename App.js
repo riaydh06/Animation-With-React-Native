@@ -1,68 +1,41 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Deck from './src/Deck';
+import { createBottomTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 import Ball from './src/Ball';
-import { Card, ListItem, Button } from 'react-native-elements'
-
-
-const DATA = [
-  { id: 1, text: 'Card #1', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
-  { id: 2, text: 'Card #2', uri: 'http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg' },
-  { id: 3, text: 'Card #3', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg' },
-  { id: 4, text: 'Card #4', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
-  { id: 5, text: 'Card #5', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
-  { id: 6, text: 'Card #6', uri: 'http://www.fluxdigital.co/wp-content/uploads/2015/04/Unsplash.jpg' },
-  { id: 7, text: 'Card #7', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-09.jpg' },
-  { id: 8, text: 'Card #8', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
-];
+import WelcomeScreen from './src/screens/WelcomeScreen';
+import AuthScreen from './src/screens/AuthScreen';
+import MapScreen from './src/screens/MapScreen';
+import DeckScreen from './src/screens/DeckScreen';
+import SettingScreen from './src/screens/SettingScreen';
+import ReviewScreen from './src/screens/ReviewScreen';
 
 
 export default class App extends React.Component {
-  renderCard(item) {
-    return (
-      <Card
-        key={item.id}
-        title={item.text}
-        image={{uri: item.uri}}
-      >
-        <Text style={{marginBottom: 10}}>
-          Hello World
-        </Text>
-        <Button 
-          backgroundColor="#03A9F4"
-          icon={{ name: 'code' }}
-          title="View Now"
-        />
-      </Card>
-    );
-  }
-
-  renderNoMoreCards(){
-    return (
-      <Card
-        title="All Done!"
-      >
-        <Text style={{marginBottom: 10}}>
-          There is no more content here!
-        </Text>
-        <Button 
-          backgroundColor="#03A9F4"
-          title="Get more!"
-        />
-      </Card>
-    )
-  }
   
   render() {
+    const MainNavigator = createBottomTabNavigator ({
+      welcome: { screen: WelcomeScreen },
+      auth: { screen: AuthScreen },
+      main: {
+        screen: createBottomTabNavigator ({
+          map: { screen: MapScreen },
+          deck: { screen: DeckScreen },
+          review: {
+            screen: createStackNavigator ({
+              review: { screen: ReviewScreen },
+              settings: { screen: SettingScreen }
+            })
+          }
+        })
+      }
+    }); 
+    const Container = createAppContainer(MainNavigator);
+
     return (   
       <View style={styles.container}>
-        <Deck
-          data={DATA}
-          renderCard={this.renderCard}
-          renderNoMoreCards={this.renderNoMoreCards}
-        />
         {/* <Ball /> */}
+        <Container />
       </View>
     );
   }
