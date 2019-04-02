@@ -9,6 +9,8 @@ import MapScreen from './src/screens/MapScreen';
 import DeckScreen from './src/screens/DeckScreen';
 import SettingScreen from './src/screens/SettingScreen';
 import ReviewScreen from './src/screens/ReviewScreen';
+import AllAnimation from './src/screens/animations/AllAnimation'
+import OpecityAnimation from './src/screens/animations/OpecityAnimation'
 
 
 export default class App extends React.Component {
@@ -28,15 +30,22 @@ export default class App extends React.Component {
             })
           }
         })
+      },
+      animations: {
+        screen: createStackNavigator ({
+          AllAnimation: { screen: AllAnimation },
+          Opecity: { screen: OpecityAnimation },
+          Translate: { screen: OpecityAnimation }
+        })
       }
     }); 
     const Container = createAppContainer(MainNavigator);
 
     return (   
-      <View style={styles.container}>
+      <Container>
         {/* <Ball /> */}
-        <Container />
-      </View>
+        <View  style={styles.container} />
+      </Container>
     );
   }
 }
@@ -44,18 +53,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
