@@ -9,8 +9,14 @@ import MapScreen from './src/screens/MapScreen';
 import DeckScreen from './src/screens/DeckScreen';
 import SettingScreen from './src/screens/SettingScreen';
 import ReviewScreen from './src/screens/ReviewScreen';
-import AllAnimation from './src/screens/animations/AllAnimation'
-import OpecityAnimation from './src/screens/animations/OpecityAnimation'
+import AllAnimation from './src/screens/animations/AllAnimation';
+import OpecityAnimation from './src/screens/animations/OpecityAnimation';
+import TranslateAnimation from './src/screens/animations/TranslateAnimation';
+import ScaleAnimation from './src/screens/animations/ScaleAnimation';
+import WidthHeightAnimation from './src/screens/animations/WidthHeightAnimation';
+import AbsolutePositionAnimation from './src/screens/animations/AbsolutePositionAnimation';
+import BackgroundColorAnimation from './src/screens/animations/BackgroundColorAnimation';
+import RotationAnimation from './src/screens/animations/RotationAnimation';
 
 
 export default class App extends React.Component {
@@ -35,7 +41,12 @@ export default class App extends React.Component {
         screen: createStackNavigator ({
           AllAnimation: { screen: AllAnimation },
           Opecity: { screen: OpecityAnimation },
-          Translate: { screen: OpecityAnimation }
+          Translate: { screen: TranslateAnimation },
+          Scale: { screen: ScaleAnimation },
+          WidthHeight: { screen: WidthHeightAnimation },
+          AbsolutePosition: { screen: AbsolutePositionAnimation },
+          BackgroundColor: { screen: BackgroundColorAnimation },
+          Rotation: { screen: RotationAnimation }
         })
       }
     }); 
