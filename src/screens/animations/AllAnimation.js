@@ -35,6 +35,15 @@ class  AllAnimation extends React.Component {
                 <View style={styles.page}>
                     <Button title="Rotation Animation" onPress={()=>this.props.navigation.navigate('Rotation')}/>
                 </View>
+                <View style={styles.page}>
+                    <Button title="Height Width Percent Animation" onPress={()=>this.props.navigation.navigate('HeightWidthPercentange')}/>
+                </View>
+                <View style={styles.page}>
+                    <Button title="Easing Animation" onPress={()=>this.props.navigation.navigate('Easing')}/>
+                </View>
+                <View style={styles.page}>
+                    <Button title="Spring Animation" onPress={()=>this.props.navigation.navigate('Spring')}/>
+                </View>
             </View>
         )
     }
