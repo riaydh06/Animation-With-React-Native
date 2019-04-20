@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, ScrollView} from 'react-native';
 
 
 class  AllAnimation extends React.Component {
@@ -11,7 +11,7 @@ class  AllAnimation extends React.Component {
     
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.page}>
                     <Button title="Opecity Animation" onPress={()=>this.props.navigation.navigate('Opecity')}/>
                 </View>
@@ -44,7 +44,10 @@ class  AllAnimation extends React.Component {
                 <View style={styles.page}>
                     <Button title="Spring Animation" onPress={()=>this.props.navigation.navigate('Spring')}/>
                 </View>
-            </View>
+                <View style={styles.page}>
+                    <Button title="Spring Animation" onPress={()=>this.props.navigation.navigate('Event')}/>
+                </View>
+            </ScrollView>
         )
     }
 }

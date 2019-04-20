@@ -15,7 +15,6 @@ export default class SpringAnimation extends React.Component {
     startAnimation = () => {
         Animated.spring(this.state.animation, {
             toValue: 2,
-            duration: 4400,
             friction: 2,
             tension: 160
         }).start(() => {

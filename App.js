@@ -20,6 +20,7 @@ import RotationAnimation from './src/screens/animations/RotationAnimation';
 import HeightWidthPercentangeAnimation from './src/screens/animations/HeightWidthPercentangeAnimation';
 import EasingAnimation from './src/screens/animations/EasingAnimation';
 import SpringAnimation from './src/screens/animations/SpringAnimation';
+import EventAnimation from './src/screens/animations/EventAnimation';
 
 
 export default class App extends React.Component {
@@ -52,7 +53,8 @@ export default class App extends React.Component {
           Rotation: { screen: RotationAnimation },
           HeightWidthPercentange: { screen: HeightWidthPercentangeAnimation },
           Easing: { screen: EasingAnimation },
-          Spring: { screen: SpringAnimation }
+          Spring: { screen: SpringAnimation },
+          Event: { screen: EventAnimation }
         })
       }
     }); 

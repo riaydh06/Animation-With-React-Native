@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Animated, TouchableWithoutFeedback, Button, Platform, Easing } from 'react-native';
+import { StyleSheet, View, Animated, TouchableWithoutFeedback, Button, Platform } from 'react-native';
 
-export default class HeightWidthPercentangeAnimation extends React.Component {
+export default class AddAnimation extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
-          headerTitle:  'Easing Animation'
+          headerTitle:  'Add Animation'
         };
     };
 
@@ -14,28 +14,21 @@ export default class HeightWidthPercentangeAnimation extends React.Component {
 
     startAnimation = () => {
         Animated.timing(this.state.animation, {
-            toValue: 500,
-            duration: 500,
-            // easing: Easing.back(5),
-            // easing: Easing.bounce,
-            easing: Easing.elastic(3),
-            // easing: Easing.bezier(.06,1,.86,.28)
+            toValue: 1,
+            duration: 4400
         }).start(() => {
             Animated.timing(this.state.animation, {
                 toValue: 0,
-                duration: 500
+                duration: 2500
             }).start();
         });
     }
 
     render() {
+        const randomValue = new Animated.Value(50);
+        const newAnimation = Animated.add(this.state.animation, randomValue);
         const animatedStyles = {
-            transform: [
-                {
-                    translateY : this.state.animation
-                }
-
-            ]
+           transform: [{translateY: newAnimation }]
         }
         return (
             <View style={styles.container}>
@@ -56,8 +49,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'green',
       },
     box: {
-        height: 20,
-        width: 20,
+        width: 100,
+        height: 100,
         backgroundColor: 'red'
     }
 })

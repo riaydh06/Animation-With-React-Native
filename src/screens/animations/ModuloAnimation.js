@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Animated, TouchableWithoutFeedback, Button, Platform, Easing } from 'react-native';
+import { StyleSheet, View, Animated, TouchableWithoutFeedback, Button, Platform } from 'react-native';
 
-export default class HeightWidthPercentangeAnimation extends React.Component {
+export default class ModuloAnimation extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
-          headerTitle:  'Easing Animation'
+          headerTitle:  'Modulo Animation'
         };
     };
 
@@ -14,28 +14,20 @@ export default class HeightWidthPercentangeAnimation extends React.Component {
 
     startAnimation = () => {
         Animated.timing(this.state.animation, {
-            toValue: 500,
-            duration: 500,
-            // easing: Easing.back(5),
-            // easing: Easing.bounce,
-            easing: Easing.elastic(3),
-            // easing: Easing.bezier(.06,1,.86,.28)
-        }).start(() => {
-            Animated.timing(this.state.animation, {
-                toValue: 0,
-                duration: 500
-            }).start();
-        });
+            toValue: 12,
+            duration: 4400
+        }).start();
     }
 
     render() {
+        const randomValue = new Animated.Value(3);
+        const newAnimation = Animated.modulo(this.state.animation, randomValue);
+        const interpolated = newAnimation.interpolate({
+            inputRange: [0,3],
+            outputRange: ["0deg", "270deg"]
+        })
         const animatedStyles = {
-            transform: [
-                {
-                    translateY : this.state.animation
-                }
-
-            ]
+           transform: [{translateY: [{ rotate: interpolated}] }]
         }
         return (
             <View style={styles.container}>
@@ -56,8 +48,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'green',
       },
     box: {
-        height: 20,
-        width: 20,
+        width: 100,
+        height: 100,
         backgroundColor: 'red'
     }
 })
